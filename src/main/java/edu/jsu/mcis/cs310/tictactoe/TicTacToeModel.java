@@ -3,7 +3,7 @@ package edu.jsu.mcis.cs310.tictactoe;
 /**
 * TicTacToeModel implements the Model for the Tic-Tac-Toe game.
 *
-* @author  Your Name
+* @author  Justin Jeter
 * @version 1.0
 */
 public class TicTacToeModel {
@@ -52,7 +52,11 @@ public class TicTacToeModel {
 
         /* Initialize board (fill with TicTacToeSquare.EMPTY) */
         
-        // INSERT YOUR CODE HERE
+        for (int i=0; i < dimension; i++){
+            for (int k=0; k < dimension; k++){
+                board [i][k] = TicTacToeSquare.Empty;
+            }
+        }
         
     }
     /**
@@ -71,10 +75,25 @@ public class TicTacToeModel {
     */
     public boolean makeMark(int row, int col) {
         
-        // INSERT YOUR CODE HERE
+        if(isValidSquare(row, col) == true && isSquareMarked (row, col) == false){
+          if(isXTurn() == true) {
+              board [row][col] = TicTacToeSquare.X;
+              xTurn =! xTurn;
+              return true;
+          }  
+          else board [row][col] = TicTacToeSquare.0;
+          xTurn =! xTurn;
+          return true;
+         
+        
+          
+          
+        }
+        else {
+            
         
         return false; // this is a stub; you may need to remove it later!
-        
+        }
     }
     
     /**
@@ -88,9 +107,15 @@ public class TicTacToeModel {
     */
     private boolean isValidSquare(int row, int col) {
         
-        // INSERT YOUR CODE HERE
+        boolean isValidSquare = false;
+        if ((row < dimension) && (row >=0)){
+            
+            if ((col < dimension) && (col >= 0)){
+                isValidSquare = true;
+            }
+        }
         
-        return false; // this is a stub; you may need to remove it later!
+        return isValidSquare; // this is a stub; you may need to remove it later!
         
     }
     
@@ -104,9 +129,9 @@ public class TicTacToeModel {
     */
     private boolean isSquareMarked(int row, int col) {
                 
-        // INSERT YOUR CODE HERE
+        return board [row][col] != TicTacToeSquare.EMPTY;
         
-        return false; // this is a stub; you may need to remove it later!
+        
             
     }
     
@@ -121,9 +146,9 @@ public class TicTacToeModel {
     */
     public TicTacToeSquare getSquare(int row, int col) {
         
-        // INSERT YOUR CODE HERE
         
-        return null; // this is a stub; you should remove it later!
+        
+        return board[row][col];
             
     }
     
@@ -137,10 +162,20 @@ public class TicTacToeModel {
     */
     public TicTacToeState getState() {
         
-        // INSERT YOUR CODE HERE
+        if (isMarkWin(TicTacToeSquare.0)){
+           return TicTacToeState.0;
+    }
+        else if (isMarkWin(TicTacToeSquare.X)){
+                return TicTacToeState.X;
+                }
         
-        return null; // this is a stub; you should remove it later!
+        else if (isTie()){
+                return  TicTacToeState.TIE;
+                }
         
+        else{
+                return TicTacToeState.NONE; 
+                }
     }
     
     /**
@@ -153,9 +188,48 @@ public class TicTacToeModel {
     */
     private boolean isMarkWin(TicTacToeSquare mark) {
         
-        // INSERT YOUR CODE HERE
-        
-        return false; // this is a stub; you may need to remove it later!
+        boolean marker = false;
+        for (int i=0; i < dimension; i++){
+            for (int k=0; k< dimension; k++){
+                if (board [i][k] != mark)
+                    break;
+                
+                if (k == (dimension -1) && board [i][k] == mark){
+                    marker = false;
+                }
+            }
+        }
+        for (int i=0; i < dimension; i++){
+            for (int k=0; k < dimension; k++){
+                if (board [i][k] != mark)
+                    break;
+                if (k == (dimension-1) && board [i][k] == mark){
+                    marker = false;
+                }
+            }
+        }
+        int starter = 0;
+        for (int i=(dimension -1); i > -1; i--){
+            if (board[i][starter] != mark){
+                break;
+            }
+            if (i==0 && starter ==(dimension-1) && board [i][starter] == mark){
+                marker = false;
+            }
+            starter ++;
+            
+                
+        }
+        for (int i = 0; i < dimension; i++){
+            if (board [i][i] != mark){
+                break;
+            }
+            if(i==(dimension-1) && board [i][i] == mark){
+                marker = false;
+            }
+        }
+            
+        return marker = false; // this is a stub; you may need to remove it later!
         
     }
     
@@ -167,9 +241,17 @@ public class TicTacToeModel {
     */	
     private boolean isTie() {
         
-        // INSERT YOUR CODE HERE
+        boolean EmptySquare = false;
         
-        return false; // this is a stub; you may need to remove it later!
+        for (int i=0; i < dimension; i++){
+            for (int k=0; k < dimension; k++){
+                if (board [i][k] ==TicTacSquare.EMPTY){
+                    EmptySquare = true; 
+                }
+            }
+        }
+        
+        return EmptySquare == false && (isMarkWin(TicTacToeSquare.0) == false || isMarkWin(TicTacToeSquare.X)== false);
         
     }
 
@@ -225,7 +307,21 @@ public class TicTacToeModel {
         
         StringBuilder output = new StringBuilder();
         
-        // INSERT YOUR CODE HERE
+        output.append(" ");
+           for (int i=0; i < dimension; i++){
+               output.append(i);
+           }
+           output.append("\n");
+              for (int i=0; i < dimension; i++){
+                  output.append(i);
+                  output.append(" ");
+                  
+                  for (int k=0; k < dimension; k++){
+                      output.append(board[i][k]);
+                  }
+                  output.append("\n");
+              }
+              output.append("\n");
         
         return output.toString();
         

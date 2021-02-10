@@ -49,7 +49,7 @@ public class TicTacToeController {
             
             view.showBoard(model.toString());
             
-            TicTacToeMove move = view.getNextMove(model.isXturn());
+            TicTacToeMove move = view.getNextMove(model.isXTurn());
             int row = move.getRow();
             int col = move.getCol();
             

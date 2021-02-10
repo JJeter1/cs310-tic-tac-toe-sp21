@@ -54,7 +54,7 @@ public class TicTacToeModel {
         
         for (int i=0; i < dimension; i++){
             for (int k=0; k < dimension; k++){
-                board [i][k] = TicTacToeSquare.Empty;
+                board [i][k] = TicTacToeSquare.EMPTY;
             }
         }
         
@@ -245,7 +245,7 @@ public class TicTacToeModel {
         
         for (int i=0; i < dimension; i++){
             for (int k=0; k < dimension; k++){
-                if (board [i][k] ==TicTacSquare.EMPTY){
+                if (board [i][k] ==TicTacToeSquare.EMPTY){
                     EmptySquare = true; 
                 }
             }

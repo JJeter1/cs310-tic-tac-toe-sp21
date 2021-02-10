@@ -81,7 +81,7 @@ public class TicTacToeModel {
               xTurn =! xTurn;
               return true;
           }  
-          else board [row][col] = TicTacToeSquare.0;
+          else board [row][col] = TicTacToeSquare.O;
           xTurn =! xTurn;
           return true;
          
@@ -162,8 +162,8 @@ public class TicTacToeModel {
     */
     public TicTacToeState getState() {
         
-        if (isMarkWin(TicTacToeSquare.0)){
-           return TicTacToeState.0;
+        if (isMarkWin(TicTacToeSquare.O)){
+           return TicTacToeState.O;
     }
         else if (isMarkWin(TicTacToeSquare.X)){
                 return TicTacToeState.X;
@@ -251,7 +251,7 @@ public class TicTacToeModel {
             }
         }
         
-        return EmptySquare == false && (isMarkWin(TicTacToeSquare.0) == false || isMarkWin(TicTacToeSquare.X)== false);
+        return EmptySquare == false && (isMarkWin(TicTacToeSquare.O) == false || isMarkWin(TicTacToeSquare.X)== false);
         
     }
 

@@ -107,15 +107,15 @@ public class TicTacToeModel {
     */
     private boolean isValidSquare(int row, int col) {
         
-        boolean isValidSquare = false;
+        boolean ValidSquare = false;
         if ((row < dimension) && (row >=0)){
             
             if ((col < dimension) && (col >= 0)){
-                isValidSquare = true;
+                ValidSquare = true;
             }
         }
         
-        return isValidSquare; // this is a stub; you may need to remove it later!
+        return ValidSquare; // this is a stub; you may need to remove it later!
         
     }
     
@@ -191,10 +191,10 @@ public class TicTacToeModel {
         boolean marker = false;
         for (int i=0; i < dimension; i++){
             for (int k=0; k< dimension; k++){
-                if (board [i][k] != mark)
+                if (board [k][i] != mark)
                     break;
                 
-                if (k == (dimension -1) && board [i][k] == mark){
+                if (k == (dimension -1) && board [k][i] == mark){
                     marker = false;
                 }
             }
